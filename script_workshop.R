@@ -135,9 +135,11 @@ elpres_14_PT <- get_elections(year=2014, position="Presidente", regional_aggrega
 View(elpres_14_PT)
  
 # Para mostrar apenas os resultados referentes ao candidato 2511, por exemplo, acrescente o parâmetro CANDIDATE_NUMBER
+# Vamos escrever os parâmetros usando os códigos. Para o cargo de deputado federal o código é 6, para a agregação por UF
+#o código é 2 e para a agregação por candidato o código é 2
 
-eldepfed_2511 <- get_elections(year=2014, position="Deputado Federal", regional_aggregation="Estado", political_aggregation="Candidato", candidate_number=2511)
-View(eleicoes_deputado_federal_2511)
+eldepfed_2511 <- get_elections(year=2014, position=6, regional_aggregation=2, political_aggregation=2, candidate_number=2511)
+View(eldepfed_2511)
 
 
 # 4. Selecionando apenas as colunas que me interessam ---------------------
