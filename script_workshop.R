@@ -11,7 +11,7 @@
 # 1. Instalando o CepespR -------------------------------------------------
 
 # Para instalar o pacote CepespR é preciso rodar o código abaixo apenas 
-#uma vez (Apenas em caso de troca de computador é preciso instalar novamente 
+#uma vez (apenas em caso de troca de computador é preciso instalar novamente 
 #o pacote):
 
 if (!require("devtools")) install.packages("devtools")
