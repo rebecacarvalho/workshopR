@@ -190,8 +190,12 @@ View(elpres_14_)
 # Para variáveis qualitativas (categóricas), podemos usar a função TABLE. Esta função retorna a distribuição de frequência absoluta
 # das categorias. Veja:
 
-#
+table(elpres_14)
 
+# Para variáveis quantitativas (contínuas), podemos usar a função SUMMARY. Esta função retorna média, mediana, mínimo 
+# e máximo das variáveis. Veja: 
+ 
+summary(elpres_14)
 
 # 6. Salvando os resultados -----------------------------------------------
 
