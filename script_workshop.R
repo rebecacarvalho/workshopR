@@ -105,7 +105,7 @@ View(votos_presidente_2014_estad)
 # Para obter detalhes a respeito de uma eleição especificando-se o cargo, 
 #use a funcao get_elections:
 
-eleicoes_presidente_2014 <- get_elections(year=2014, position="Presidente", regional_aggregation="Municipio", political_aggregation="Candidato")
+elpre_14 <- get_elections(year=2014, position="Presidente", regional_aggregation="Municipio", political_aggregation="Candidato")
 View(eleicoes_presidente_2014)
 
 # Esta função permite também consultar o resultado por diferentes agregações: 
@@ -114,7 +114,7 @@ View(eleicoes_presidente_2014)
 # Em resultado consolidado da eleição você pode encontrar dado de comparecimento, votos válidos
 #e votos brancos e nulos. Veja:
 
-eleicoes_presidente_2014_consol <- get_elections(year=2014, position="Presidente", regional_aggregation="Estado", political_aggregation="Consolidado")
+elpre_14_2 <- get_elections(year=2014, position="Presidente", regional_aggregation="Estado", political_aggregation="Consolidado")
 View(eleicoes_presidente_2014_consol)
 
 # 3. Filtrando os resultados -----------------------------------------------
