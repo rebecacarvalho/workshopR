@@ -178,7 +178,7 @@ View(vtpres_14_new)
 # Outra maneira de selecionar as colunas de interesse é através da função SUBSET. Para isto, basta:
 
 elpres_14_ <- subset(eleicoes_presidente_2014_uf,select= c("SIGLA_PARTIDO", "ANO_ELEICAO"))
-View(eleicoes_presidente_2014_2)
+View(elpres_14_)
 
 # Note que a função foi escrita na seguinte ordem: nome do novo data frame+subset+nome do antigo data frame+
 #nome das colunas de interesse
