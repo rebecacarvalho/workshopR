@@ -56,7 +56,7 @@ View(candpres_14)
 # https://github.com/Cepesp-Fgv/cepesp-rest/blob/master/EleicoesPorCargo_BETA.md
 # Vamos fazer uma consulta usando o código do cargo:
 
-# Suponhamos que estamos interessados nas eleições para prefeito ocorridas em 2012? Neste caso, 
+# Suponhamos que estamos interessados nas eleições para prefeito ocorridas em 2012. Neste caso, 
 # é preciso mudar apenas os valores dos parâmetros da função. Veja:
 
 candpref_12 <- get_candidates(year=2012, position="Prefeito")
