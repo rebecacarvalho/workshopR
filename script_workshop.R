@@ -7,7 +7,7 @@
 
 # Pensando nisto, este script tem como seu objetivo principal mostrar exemplos de como o pacote CepespR funciona e,
 # assim, facilitar a vida dos usuários na hora de utilizar o R. Seguindo a rotina de cógidos abaixo, o usuário ao final 
-# deste script terá as consultas realizadas salvas com sucesso em formato ompatível com o excel(.csv).
+# deste script terá as consultas realizadas salvas com sucesso em formato compatível com o excel(.csv).
 
 
 # 1. Instalando o CepespR -------------------------------------------------
