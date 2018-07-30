@@ -65,6 +65,7 @@ candpref_12 <- get_candidates(year=2012, position="Prefeito")
 
 View(candpref_12)
 
+
 ## 2.2. Consultar Coligações ----------------------------------------------
 
 # Para obter detalhes a respeito dos partidos que compuseram as coligacões em 
@@ -80,6 +81,7 @@ View(colpres_14)
 
 colpres_02 <- get_coalitions(year=2002, position="Presidente")
 View(colpres_02)
+
 
 ## 2.3. Consultar votos por eleição ---------------------------------------
 
@@ -97,6 +99,7 @@ View(vtpres_14_mun)
 
 vtpres_14_estad <-get_votes(year=2014, position="Presidente", regional_aggregation="Estado")
 View(vtpres_14_estad)
+
 
 ## 2.4. Consultar resultado de eleições por cargo -------------------------
 
@@ -118,6 +121,7 @@ View(elpres_14)
 
 elpres_14_2 <- get_elections(year=2014, position="Presidente", regional_aggregation="Estado", political_aggregation="Consolidado")
 View(elpres_14_2)
+
 
 # 3. Filtrando os resultados -----------------------------------------------
 
@@ -196,6 +200,7 @@ table(elpres_14)
 # e máximo das variáveis. Veja: 
  
 summary(elpres_14)
+
 
 # 6. Salvando os resultados -----------------------------------------------
 
