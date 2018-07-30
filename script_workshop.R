@@ -180,7 +180,16 @@ View(eleicoes_presidente_2014_2)
 #nome das colunas de interesse
 
 
-# 5. Salvando os resultados -----------------------------------------------
+# 5. Analisando os resultados ---------------------------------------------
+
+# É possível fazer análises descritivas das variáveis contidas nos data frames. Por exemplo:
+# Para variáveis qualitativas (categóricas), podemos usar a função TABLE. Esta função retorna a distribuição de frequência absoluta
+#das categorias. Veja:
+
+#
+
+
+# 6. Salvando os resultados -----------------------------------------------
 
 # Para salvar os data frames gerados neste script em formato .csv, basta usar a função abaixo:
 
