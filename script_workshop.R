@@ -199,6 +199,4 @@ View(eleicoes_presidente_2014_2)
 write.csv2(eleicoes_presidente_2014, "eleicoes_presidente_2014.csv")
 
 
-# 6. Analisando os resultados ---------------------------------------------
-
 
