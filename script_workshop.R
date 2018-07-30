@@ -40,11 +40,11 @@ library(cepespR)
 # base_de_dados<-get_candidates(year= "Ano escolhido", position = "cargo escolhido"). 
 # Como no exemplo abaixo:
 
-candidatos_presidente_2014 <- get_candidates(year=2014, position=11)
+candpres_14 <- get_candidates(year=2014, position=11)
 
 # Para visualizar os dados do data frame criado usamos a função VIEW
 
-View(candidatos_presidente_2014)
+View(candpres_14)
 
 # A ordem da funcao é sempre esta: nome do data frame onde você quer salvar estas 
 #informações + nome da função + variáveis de interesse
@@ -57,11 +57,11 @@ View(candidatos_presidente_2014)
 # Suponhamos que estamos interessados nas eleições para prefeito ocorridas em 2012? Neste caso, 
 #é preciso mudar apenas os valores dos parâmetros da função. Veja:
 
-candidatos_prefeitos_2012 <- get_candidates(year=2012, position="Prefeito")
+candpref_12 <- get_candidates(year=2012, position="Prefeito")
 # Você também poderia ter escrito "Prefeito" no lugar do código 11, que o resultado seria o mesmo.
 # Note que apenas o ano e o nome(código) do cargo foram alterados
 
-View(candidatos_prefeitos_2012)
+View(candpref_12)
 
 ##2.2. Consultar Coligações ----------------------------------------------
 
@@ -70,22 +70,22 @@ View(candidatos_prefeitos_2012)
 
 # Ela funciona de forma similar a get_candidates:
 
-coligacoes_presidente_2014 <- get_coalitions(year=2014, position="Presidente")
-View(coligacoes_presidente_2014)
+colpres_14 <- get_coalitions(year=2014, position="Presidente")
+View(colpres_14)
 
 # Suponhamos que agora estamos interessados nas coligações da eleição para 
 #presidente em 2002. Neste caso, a função será escrita assim:
 
-coligacoes_presidente_2002 <- get_coalitions(year=2002, position="Presidente")
-View(coligacoes_presidente_2002)
+colpres_02 <- get_coalitions(year=2002, position="Presidente")
+View(colpres_02)
 
 ##2.3. Consultar votos por eleição ---------------------------------------
 
 # Para obter detalhes a respeito do número de votos de cada candidato em uma 
 #eleição específica, a funcao get_votos é a indicada:
 
-votos_presidente_2014_mun <- get_votes(year=2014, position="Presidente", regional_aggregation="Municipio")
-View(votos_presidente_2014_mun)
+vtpres_14_mun <- get_votes(year=2014, position="Presidente", regional_aggregation="Municipio")
+View(vtpres_14_mun)
 
 # Diferente das funções anteriores, essa função precisa de uma AGREGAÇÃO REGIONAL. 
 #Ou seja, você pode escolher a que nível de detalhe você quer ver os dados, se é por seção, municipio, nacional, etc. 
@@ -93,8 +93,8 @@ View(votos_presidente_2014_mun)
 
 #E se estivéssemos interessados em ver a agregação por Estado (unidade da federação)?
 
-votos_presidente_2014_estad <-get_votes(year=2014, position="Presidente", regional_aggregation="Estado")
-View(votos_presidente_2014_estad)
+vtpres_14_estad <-get_votes(year=2014, position="Presidente", regional_aggregation="Estado")
+View(vtpres_14_estad)
 
 ##2.4. Consultar resultado de eleições por cargo -------------------------
 
@@ -105,8 +105,8 @@ View(votos_presidente_2014_estad)
 # Para obter detalhes a respeito de uma eleição especificando-se o cargo, 
 #use a funcao get_elections:
 
-elpre_14 <- get_elections(year=2014, position="Presidente", regional_aggregation="Municipio", political_aggregation="Candidato")
-View(eleicoes_presidente_2014)
+elpres_14 <- get_elections(year=2014, position="Presidente", regional_aggregation="Municipio", political_aggregation="Candidato")
+View(elpres_14)
 
 # Esta função permite também consultar o resultado por diferentes agregações: 
 #Candidato, Partido, Coligação e Consolidado
@@ -114,8 +114,8 @@ View(eleicoes_presidente_2014)
 # Em resultado consolidado da eleição você pode encontrar dado de comparecimento, votos válidos
 #e votos brancos e nulos. Veja:
 
-elpre_14_2 <- get_elections(year=2014, position="Presidente", regional_aggregation="Estado", political_aggregation="Consolidado")
-View(eleicoes_presidente_2014_consol)
+elpres_14_2 <- get_elections(year=2014, position="Presidente", regional_aggregation="Estado", political_aggregation="Consolidado")
+View(elpres_14_2)
 
 # 3. Filtrando os resultados -----------------------------------------------
 
@@ -126,17 +126,17 @@ View(eleicoes_presidente_2014_consol)
 
 # Para mostrar apenas os resultados do Rio Grande do Sul, por exemplo, acrescente o parâmetro STATE
 
-eleicoes_presidente_2014_RS <- get_elections(year=2014, position="Presidente", regional_aggregation="Estado", political_aggregation="Partido", state="RS")
-View(eleicoes_presidente_2014_RS)
+elpres_14_RS <- get_elections(year=2014, position="Presidente", regional_aggregation="Estado", political_aggregation="Partido", state="RS")
+View(elpres_14_RS)
 
 # Para mostrar apenas os resultados referentes ao PT, por exemplo, acrescente o parâmetro PARTY
 
-eleicoes_presidente_2014_PT <- get_elections(year=2014, position="Presidente", regional_aggregation="Estado", political_aggregation="Partido", party="13")
-View(eleicoes_presidente_2014_PT)
+elpres_14_PT <- get_elections(year=2014, position="Presidente", regional_aggregation="Estado", political_aggregation="Partido", party="13")
+View(elpres_14_PT)
  
 # Para mostrar apenas os resultados referentes ao candidato 2511, por exemplo, acrescente o parâmetro CANDIDATE_NUMBER
 
-eleicoes_deputado_federal_2511 <- get_elections(year=2014, position="Deputado Federal", regional_aggregation="Estado", political_aggregation="Candidato", candidate_number=2511)
+eldepfed_2511 <- get_elections(year=2014, position="Deputado Federal", regional_aggregation="Estado", political_aggregation="Candidato", candidate_number=2511)
 View(eleicoes_deputado_federal_2511)
 
 
@@ -168,12 +168,12 @@ colunas <- list("NUMERO_CANDIDATO", "UF", "QTDE_VOTOS", "COD_MUN_IBGE")
 
 ## PASSO 3: Acrescentamos o parâmetro columns_list a nossa função e indicamos a lista criada com o nome das colunas:
 
-votos_pres_2014_new <- get_votes(year="2014", position="Presidente", regional_aggregation="Municipio", columns_list=colunas)
-View(votos_pres_2014_new)
+vtpres_14_new <- get_votes(year="2014", position="Presidente", regional_aggregation="Municipio", columns_list=colunas)
+View(vtpres_14_new)
 
 # Outra maneira de selecionar as colunas de interesse é através da função SUBSET. Para isto, basta:
 
-eleicoes_presidente_2014_2 <- subset(eleicoes_presidente_2014_uf,select= c("SIGLA_PARTIDO", "ANO_ELEICAO"))
+elpres_14_ <- subset(eleicoes_presidente_2014_uf,select= c("SIGLA_PARTIDO", "ANO_ELEICAO"))
 View(eleicoes_presidente_2014_2)
 
 # Note que a função foi escrita na seguinte ordem: nome do novo data frame+subset+nome do antigo data frame+
@@ -196,7 +196,7 @@ View(eleicoes_presidente_2014_2)
 # A função está organizada da seguinte maneira:
 # write.csv2(nome do data frame que quero exportar, nome que quero dar ao meu arquivo .csv)
 
-write.csv2(eleicoes_presidente_2014, "eleicoes_presidente_2014.csv")
+write.csv2(elpres_14, "eleicoes_presidente_2014.csv")
 
 
 
