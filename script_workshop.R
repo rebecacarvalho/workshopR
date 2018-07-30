@@ -217,6 +217,7 @@ summary(elpres_14$IDADE_DATA_ELEICAO)
 # Note que a função SUMMARY funciona de maneira similar a TABLE:
 # summary(nome do data frame$variável do data frame em que estou interessado)
 
+
 # 6. Salvando os resultados -----------------------------------------------
 
 # Para salvar os data frames gerados neste script em formato .csv, basta usar a função abaixo:
