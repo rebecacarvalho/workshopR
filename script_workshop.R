@@ -194,13 +194,27 @@ View(elpres_14_)
 # Para variáveis qualitativas (categóricas), podemos usar a função TABLE. Esta função retorna a distribuição de frequência absoluta
 # das categorias. Veja:
 
-table(elpres_14)
+# Suponhamos que estamos interessados na quantidade de candidatas do sexo feminino para as eleições a presidente de 2014.
+# A função abaixo retorna a frequência absoluta de homens e mulheres:
+
+table(elpres_14$DESCRICAO_SEXO)
+
+# Note que a função foi escrita assim: table(nome do data frame$variável do data frame em que estou interessado)
+
+# E para as eleições a deputado federal em 2014? Quantas mulheres se candidataram neste ano? Veja:
+
+eldepfed_14 <- get_elections(year=2014, position="Deputado Federal", regional_aggregation="UF", political_aggregation="Candidato")
+table(eldepfed_14$DESCRICAO_SEXO)
+
 
 # Para variáveis quantitativas (contínuas), podemos usar a função SUMMARY. Esta função retorna média, mediana, mínimo 
 # e máximo das variáveis. Veja: 
  
-summary(elpres_14)
+# Suponhamos que estamos interessados na média das idades dos candidatos nas eleições a presidente de 2014. Veja:
 
+summary(elpres_14$IDADE_DATA_ELEICAO)
+
+# Note que a função SUMMARY funciona de maneira similar a TABLE
 
 # 6. Salvando os resultados -----------------------------------------------
 
