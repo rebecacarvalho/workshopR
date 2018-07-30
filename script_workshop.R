@@ -31,7 +31,7 @@ library(cepespR)
 #um data frame com os detalhes das eleições. Veja abaixo o que cada função faz:
 
 
-##2.1.Consultar perfil dos candidatos -----------------------------------
+##2.1. Consultar perfil dos candidatos -----------------------------------
 
 # Para obter detalhes a respeito das características individuais dos candidatos que 
 #concorreram em uma eleição específica, a funcao get_candidates é a indicada:
@@ -63,7 +63,7 @@ candidatos_prefeitos_2012 <- get_candidates(year=2012, position="Prefeito")
 
 View(candidatos_prefeitos_2012)
 
-##2.2.Consultar Coligações ----------------------------------------------
+##2.2. Consultar Coligações ----------------------------------------------
 
 # Para obter detalhes a respeito dos partidos que compuseram as coligacões em 
 #uma eleição específica, a funcao get_coalitions é a indicada:
@@ -79,7 +79,7 @@ View(coligacoes_presidente_2014)
 coligacoes_presidente_2002 <- get_coalitions(year=2002, position="Presidente")
 View(coligacoes_presidente_2002)
 
-##2.3.Consultar votos por eleição ---------------------------------------
+##2.3. Consultar votos por eleição ---------------------------------------
 
 # Para obter detalhes a respeito do número de votos de cada candidato em uma 
 #eleição específica, a funcao get_votos é a indicada:
@@ -96,7 +96,7 @@ View(votos_presidente_2014_mun)
 votos_presidente_2014_estad <-get_votes(year=2014, position="Presidente", regional_aggregation="Estado")
 View(votos_presidente_2014_estad)
 
-##2.4.Consultar resultado de eleições por cargo -------------------------
+##2.4. Consultar resultado de eleições por cargo -------------------------
 
 # Além das consultas disponíveis no TSE, é possível fazer uma consulta integrada as eleições.
 #Esta consulta agrega informações de candidato, coligações e votos. 
