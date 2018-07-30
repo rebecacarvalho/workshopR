@@ -8,6 +8,8 @@
 # Pensando nisto, este script tem como seu objetivo principal mostrar exemplos de como o pacote CepespR funciona e,
 #assim, facilitar a vida dos usuários na hora de utilizar o R. Seguindo a rotina de cógidos abaixo, o usuário ao final 
 #deste script terá as consultas realizadas salvas com sucesso em formato ompatível com o excel(.csv).
+
+
 # 1. Instalando o CepespR -------------------------------------------------
 
 # Para instalar o pacote CepespR é preciso rodar o código abaixo apenas 
@@ -23,7 +25,7 @@ devtools::install_github("Cepesp-Fgv/cepesp-r")
 library(cepespR)
 
 
-# 2. Explorando as funcoes do CepespR -------------------------------------
+# 2. Explorando as funções do CepespR -------------------------------------
 
 # Uma vez carregado o pacote do CepespR, o usuário poderá fazer uso de 4 tipos de funções: 
 #get_candidates, get_coalitions, get_votes e get_elections. Cada função mostra
@@ -31,7 +33,7 @@ library(cepespR)
 #um data frame com os detalhes das eleições. Veja abaixo o que cada função faz:
 
 
-##2.1. Consultar perfil dos candidatos -----------------------------------
+## 2.1. Consultar perfil dos candidatos -----------------------------------
 
 # Para obter detalhes a respeito das características individuais dos candidatos que 
 #concorreram em uma eleição específica, a funcao get_candidates é a indicada:
@@ -51,7 +53,7 @@ View(candpres_14)
 
 # Também é possível realizar as consultas indicando os códigos dos cargos.
 # Para visualizar quais códigos representam cada cargo, por favor, acesse: 
-#https://github.com/Cepesp-Fgv/cepesp-rest/blob/master/EleicoesPorCargo_BETA.md
+# https://github.com/Cepesp-Fgv/cepesp-rest/blob/master/EleicoesPorCargo_BETA.md
 # Vamos fazer uma consulta usando o código do cargo:
 
 # Suponhamos que estamos interessados nas eleições para prefeito ocorridas em 2012? Neste caso, 
@@ -63,7 +65,7 @@ candpref_12 <- get_candidates(year=2012, position="Prefeito")
 
 View(candpref_12)
 
-##2.2. Consultar Coligações ----------------------------------------------
+## 2.2. Consultar Coligações ----------------------------------------------
 
 # Para obter detalhes a respeito dos partidos que compuseram as coligacões em 
 #uma eleição específica, a funcao get_coalitions é a indicada:
@@ -79,7 +81,7 @@ View(colpres_14)
 colpres_02 <- get_coalitions(year=2002, position="Presidente")
 View(colpres_02)
 
-##2.3. Consultar votos por eleição ---------------------------------------
+## 2.3. Consultar votos por eleição ---------------------------------------
 
 # Para obter detalhes a respeito do número de votos de cada candidato em uma 
 #eleição específica, a funcao get_votos é a indicada:
@@ -91,12 +93,12 @@ View(vtpres_14_mun)
 #Ou seja, você pode escolher a que nível de detalhe você quer ver os dados, se é por seção, municipio, nacional, etc. 
 #Os diferentes níveis de agregação disponíveis podem ser consultados em: https://github.com/Cepesp-Fgv/cepesp-r
 
-#E se estivéssemos interessados em ver a agregação por Estado (unidade da federação)?
+# E se estivéssemos interessados em ver a agregação por Estado (unidade da federação)?
 
 vtpres_14_estad <-get_votes(year=2014, position="Presidente", regional_aggregation="Estado")
 View(vtpres_14_estad)
 
-##2.4. Consultar resultado de eleições por cargo -------------------------
+## 2.4. Consultar resultado de eleições por cargo -------------------------
 
 # Além das consultas disponíveis no TSE, é possível fazer uma consulta integrada as eleições.
 #Esta consulta agrega informações de candidato, coligações e votos. 
@@ -153,7 +155,7 @@ View(eldepfed_2511)
 
 names(get_candidates(year = 2014, position = "Presidente"))
 
-#Note que uma lista de 46 colunas apareceu no seu console. E para as outras funções?
+# Note que uma lista de 46 colunas apareceu no seu console. E para as outras funções?
 
 names(get_coalitions(year = 2014, position = "Presidente"))#Lista as colunas da função get_coalition
 
