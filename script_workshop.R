@@ -215,6 +215,7 @@ table(eldepfed_14$DESCRICAO_SEXO)
 summary(elpres_14$IDADE_DATA_ELEICAO)
 
 # Note que a função SUMMARY funciona de maneira similar a TABLE
+# SUMMARY(nome do data frame$variável do data frame em que estou interessado)
 
 # 6. Salvando os resultados -----------------------------------------------
 
