@@ -113,7 +113,7 @@ View(elpres_14)
 # Esta função permite também consultar o resultado por diferentes agregações: 
 #Candidato, Partido, Coligação e Consolidado
 
-# Em resultado consolidado da eleição você pode encontrar dado de comparecimento, votos válidos
+# Em resultado consolidado da eleição você pode encontrar dados de comparecimento, votos válidos
 #e votos brancos e nulos. Veja:
 
 elpres_14_2 <- get_elections(year=2014, position="Presidente", regional_aggregation="Estado", political_aggregation="Consolidado")
