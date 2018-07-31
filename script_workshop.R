@@ -100,6 +100,7 @@ vtpres_14_estad <-get_votes(year=2014, position="Presidente", regional_aggregati
 View(vtpres_14_estad)
 
 
+
 ## 2.4. Consultar resultado de eleições por cargo -------------------------
 
 # Além das consultas disponíveis no TSE, é possível fazer uma consulta integrada as eleições.
@@ -121,11 +122,7 @@ View(elpres_14)
 elpres_14_2 <- get_elections(year=2014, position="Presidente", regional_aggregation="Estado", political_aggregation="Consolidado")
 View(elpres_14_2)
 
-
-# 3. Filtrando os resultados -----------------------------------------------
-
-# Caso você queira restringir sua busca, é possível filtrar na consulta valores específicos
-
+# Caso você queira restringir sua busca, é possível filtrar na consulta valores específicos.
 # Para limitar os resultados a valores específicos (um estado, um partido ou a um candidato, por exemplo), 
 # basta acrescentar os parâmetros STATE, PARTY ou CANDIDATE_NUMBER e alterá-los de acordo com o interesse
 
