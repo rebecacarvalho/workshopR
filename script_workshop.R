@@ -35,7 +35,7 @@ library(cepespR)
 ## 2.1. Consultar perfil dos candidatos -----------------------------------
 
 # Para obter detalhes a respeito das características individuais dos candidatos que 
-# concorreram em uma eleição específica, a funcao get_candidates é a indicada:
+# concorreram em uma eleição específica, a função get_candidates é a indicada:
 
 # A função funciona assim:
 # base_de_dados<-get_candidates(year= "Ano escolhido", position = "cargo escolhido"). 
@@ -47,7 +47,7 @@ candpres_14 <- get_candidates(year=2014, position="Presidente")
 
 View(candpres_14)
 
-# A ordem da funcao é sempre esta: nome do data frame onde você quer salvar estas 
+# A ordem da função é sempre esta: nome do data frame onde você quer salvar estas 
 # informações + nome da função + variáveis de interesse
 
 # Também é possível realizar as consultas indicando os códigos dos cargos.
@@ -68,7 +68,7 @@ View(candpref_12)
 ## 2.2. Consultar Coligações ----------------------------------------------
 
 # Para obter detalhes a respeito dos partidos que compuseram as coligacões em 
-# uma eleição específica, a funcao get_coalitions é a indicada:
+# uma eleição específica, a função get_coalitions é a indicada:
 
 # Ela funciona de forma similar a get_candidates:
 
@@ -85,7 +85,7 @@ View(colpres_02)
 ## 2.3. Consultar votos por eleição ---------------------------------------
 
 # Para obter detalhes a respeito do número de votos de cada candidato em uma 
-# eleição específica, a funcao get_votos é a indicada:
+# eleição específica, a função get_votos é a indicada:
 
 vtpres_14_mun <- get_votes(year=2014, position="Presidente", regional_aggregation="Municipio")
 View(vtpres_14_mun)
@@ -107,7 +107,7 @@ View(vtpres_14_estad)
 # A consulta ainda está em fase BETA e podem haver pontos de melhoria.
 
 # Para obter detalhes a respeito de uma eleição especificando-se o cargo, 
-# use a funcao get_elections:
+# use a função get_elections:
 
 elpres_14 <- get_elections(year=2014, position="Presidente", regional_aggregation="Municipio", political_aggregation="Candidato")
 View(elpres_14)
@@ -145,7 +145,7 @@ View(eldepfed_2511)
 
 # 4. Selecionando apenas as colunas que me interessam ---------------------
 
-# As funçõs do CepespR retornam todas as colunas disponíveis, mas é possivel limitar 
+# As funções do CepespR retornam todas as colunas disponíveis, mas é possivel limitar 
 # o tamanho dos resultados selecionando apenas as colunas de interesse. Veja:
 
 ## PASSO 1: Primeiro visualizamos quais são as colunas padrões através da função NAMES. Veja:
@@ -201,7 +201,6 @@ table(elpref_16$DESCRICAO_SEXO)
 
 eldepfed_14 <- get_elections(year=2014, position="Deputado Federal", regional_aggregation="Estado", political_aggregation="Candidato")
 table(eldepfed_14$DESCRICAO_SEXO)
-
 
 # Para variáveis quantitativas (contínuas), podemos usar a função SUMMARY. Esta função retorna média, mediana, mínimo 
 # e máximo das variáveis. Veja: 
