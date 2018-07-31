@@ -100,7 +100,6 @@ vtpres_14_estad <-get_votes(year=2014, position="Presidente", regional_aggregati
 View(vtpres_14_estad)
 
 
-
 ## 2.4. Consultar resultado de eleições por cargo -------------------------
 
 # Além das consultas disponíveis no TSE, é possível fazer uma consulta integrada as eleições.
