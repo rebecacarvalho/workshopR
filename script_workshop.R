@@ -92,7 +92,8 @@ View(vtpres_14_mun)
 
 # Diferente das funções anteriores, essa função precisa de uma AGREGAÇÃO REGIONAL. 
 # Ou seja, você pode escolher a que nível de detalhe você quer ver os dados, se é por seção, municipio, nacional, etc. 
-# Os diferentes níveis de agregação disponíveis podem ser consultados em: https://github.com/Cepesp-Fgv/cepesp-r
+# Os diferentes níveis de agregação disponíveis podem ser consultados 
+# em: https://github.com/Cepesp-Fgv/cepesp-r
 
 # E se estivéssemos interessados em ver a agregação por Estado (unidade da federação)?
 
