@@ -29,7 +29,7 @@ library(cepespR)
 # Uma vez carregado o pacote do CepespR, o usuário poderá fazer uso de 4 tipos de funções: 
 # get_candidates, get_coalitions, get_votes e get_elections. Cada função mostra
 # ao usuário diferentes partes dos dados do TSE, retornando sempre ao final da consulta
-# um data frame com os detalhes das eleições. Veja abaixo o que cada função faz:
+# uma tabela com os detalhes das eleições. Veja abaixo o que cada função faz:
 
 
 ## 2.1. Consultar perfil dos candidatos -----------------------------------
@@ -43,7 +43,7 @@ library(cepespR)
 
 candpres_14 <- get_candidates(year=2014, position="Presidente")
 
-# Para visualizar os dados do data frame criado usamos a função VIEW
+,# Para visualizar os dados do data frame criado usamos a função VIEW
 
 View(candpres_14)
 
