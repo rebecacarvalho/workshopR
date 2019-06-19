@@ -1,0 +1,204 @@
+
+# Analise dos dados sobre secretarios e filiacao partidaria
+
+rm(list = ls())
+
+# Pacotes utilizados
+install.packages("waffle")
+install.packages("tidyverse")
+install.packages("readxl")
+install.packages("lubridate")
+install.packages("cepespR")
+
+library(waffle)
+library(tidyverse)
+library(readxl)   
+library(lubridate)
+library(cepespR)
+
+
+# 1. Importando os dados --------------------------------------------------
+
+secret_df <- read.csv2("new_secretarios.csv")
+
+candi_gov <- get_candidates(year = "1998,2002,2006,2010,2014", position = "Governador")
+
+
+# 2. Analise dos dados  --------------------------------------------------
+
+
+# 2.1. Tabela -------------------------------------------------------------
+
+
+candi_gov1 <- candi_gov %>% 
+  select(ANO_ELEICAO, DESCRICAO_CARGO, DESC_SIT_TOT_TURNO,SIGLA_PARTIDO, SIGLA_UF) # Seleciona as colunas de interesse
+
+candi_gov1 <- candi_gov1 %>% 
+  filter(DESC_SIT_TOT_TURNO == "ELEITO") # Filtra os candidatos que foram eleitos
+
+names(candi_gov1)[5] <- "UF" # Renomeia a variavel   
+
+secret_df1 <- secret_df %>% 
+  select(orgaoQueOcupa, UF, anoAssumiuOCargo, SIGLA_PARTIDO) # Seleciona as colunas de interesse
+
+secret_df1 <- na.omit(secret_df1) # Omite os valores NA para facilitar a analise
+
+secret_df1$anoAssumiuOCargo <- as.numeric(secret_df1$anoAssumiuOCargo)
+glimpse(secret_df1)
+
+secret_df1$ANO_ELEICAO_ASSUM_SECR <- cut(secret_df1$anoAssumiuOCargo,
+                                         breaks = seq(1998,2014, by = 4),
+                                         labels = c('1998','2002','2006','2010')) # Cria intervalo de anos (mandato de 4 anos)
+
+secret_comp <- full_join(secret_df1, candi_gov1, by = "UF") # Junta o banco do secretarios com o banco de candidatos eleitos
+ 
+
+# O full_join quadruplica as observações. Criarei uma função que exclua as observações sem match.
+
+
+#Garante que todas as variaveis sejam as.character
+
+data.table::setDT(candi_gov1)
+candi_gov1[, (colnames(candi_gov1)) := lapply(.SD, as.character), .SDcols = colnames(candi_gov1)] 
+glimpse(candi_gov1)
+
+data.table::setDT(secret_df1)
+secret_df1[, (colnames(secret_df1)) := lapply(.SD, as.character), .SDcols = colnames(secret_df1)]
+glimpse(secret_df1)
+
+secret_comp$ANO_ELEICAO_ASSUM_SECR <-as.integer(as.character(secret_comp$ANO_ELEICAO_ASSUM_SECR)) 
+
+# Transforma em NA as observacoes repetidas
+
+secret_comp <- secret_comp %>% 
+  mutate(ANO_ELEICAO_ASSUM_SECR = if_else(ANO_ELEICAO_ASSUM_SECR == ANO_ELEICAO,ANO_ELEICAO_ASSUM_SECR,NA_integer_)) 
+  
+secret_comp <- na.omit(secret_comp) # Omite os valores NA
+ 
+
+# As observações referentes a anos anteriores a 1998 também foram retiradas desta tabela
+
+
+names(secret_comp) [9] <- "GOVERNO" # Renomeia a variavel 
+
+# Seleciona apenas as colunas necessarias para analise
+
+secret_comp1 <- select(secret_comp, orgaoQueOcupa, UF, SIGLA_PARTIDO.x, ANO_ELEICAO_ASSUM_SECR,GOVERNO)
+names(secret_comp1) [1] <- "SECRETARIA" # Renomeia a variavel
+names(secret_comp1) [3] <- "SIGLA_PARTIDO_ASSUM_SECR"
+
+secret_comp1 <- secret_comp1[, c('ANO_ELEICAO_ASSUM_SECR', 'UF', 'GOVERNO', 'SECRETARIA', 'SIGLA_PARTIDO_ASSUM_SECR')]
+
+secret_comp1 <- secret_comp1 %>% 
+  arrange(ANO_ELEICAO_ASSUM_SECR) # Ordena de forma crescente a variavel ANO_ELEICAO_ASSUM_SECR
+
+secret_anl <- secret_comp1 %>% 
+  group_by(ANO_ELEICAO_ASSUM_SECR, UF, GOVERNO, SECRETARIA, SIGLA_PARTIDO_ASSUM_SECR) %>% # Contagem das secretarias
+  summarise(contagem = n())
+
+secret_anl1 <- secret_comp1 %>% 
+  group_by(ANO_ELEICAO_ASSUM_SECR, UF, GOVERNO) %>% 
+  summarise(PARTIDOS_COALIZAO = list(SIGLA_PARTIDO_ASSUM_SECR)) # Agrupa os partidos que participaram do governo 
+
+# Garante que cada partido seja mostrado apenas uma vez 
+for(i in seq_along(secret_anl1[[1]])){
+  secret_anl1$PARTIDOS_COALIZAO[[i]] <- sort(unique(secret_anl1$PARTIDOS_COALIZAO[[i]])) 
+}
+  
+
+# 2.2. Gráfico ------------------------------------------------------------
+
+# Transforma todas as variaveis em as.character
+
+data.table::setDT(secret_comp1)
+secret_comp1[, (colnames(secret_comp1)) := lapply(.SD, as.character), .SDcols = colnames(secret_comp1)]
+
+  # Faz um gráfico de waffle que mostra as coalizÕes realizadas nos governos estaduais 
+
+  
+ secret_comp2 <- secret_comp1 %>% 
+  mutate(TIPO = if_else(GOVERNO == SIGLA_PARTIDO_ASSUM_SECR, "PARTIDO DO GOVERNO", "PARTIDO DA COALIZÃO")) # Cria uma nova variável
+
+ # Eleições de 1998  
+
+  secret_comp2 %>% 
+    filter(ANO_ELEICAO_ASSUM_SECR == 1998) %>% 
+    ggplot(mapping = aes(x = SIGLA_PARTIDO_ASSUM_SECR, y = UF, fill = TIPO)) + 
+    geom_tile(color = "black", size = 0.75) +
+    labs(title="Coalizão de partidos nos governos estaduais",
+         subtitle=" Período de 1999-2002") +
+    theme(plot.background=element_blank(),
+          panel.border=element_blank(),
+          plot.title = element_text(size = rel(1.2)),
+          axis.title = element_blank(),
+          axis.ticks = element_blank(),
+          legend.title = element_blank(),
+          legend.position = "right",
+          axis.line = element_blank(),
+          panel.background = element_blank(),
+          strip.background = element_blank(),
+          panel.grid = element_blank())
+  
+         
+    # Eleições de 2002
+  
+  secret_comp2 %>% 
+  filter(ANO_ELEICAO_ASSUM_SECR == 2002) %>% 
+  ggplot(mapping = aes(x = SIGLA_PARTIDO_ASSUM_SECR, y = UF, fill = TIPO)) + 
+  geom_tile(color = "black", size = 1) +
+    labs(title="Coalizão de partidos nos governos estaduais",
+       subtitle=" Período de 2003-2006",
+       caption="") +
+  theme(plot.background=element_blank(),
+        panel.border=element_blank(),
+        plot.title = element_text(size = rel(1.2)),
+        axis.title = element_blank(),
+        axis.ticks = element_blank(),
+        legend.title = element_blank(),
+        legend.position = "right",
+        axis.line = element_blank(),
+        panel.background = element_blank(),
+        strip.background = element_blank(),
+        panel.grid = element_blank())
+
+  # Eleições de 2006
+  
+  secret_comp2 %>% 
+    filter(ANO_ELEICAO_ASSUM_SECR == 2006) %>% 
+    ggplot(mapping = aes(x = SIGLA_PARTIDO_ASSUM_SECR, y = UF, fill = TIPO)) + 
+    geom_tile(color = "black", size = 1) +
+    labs(title="Coalizão de partidos nos governos estaduais",
+         subtitle=" Período de 2007-2010",
+         caption="") +
+    theme(plot.background=element_blank(),
+          panel.border=element_blank(),
+          plot.title = element_text(size = rel(1.2)),
+          axis.title = element_blank(),
+          axis.ticks = element_blank(),
+          legend.title = element_blank(),
+          legend.position = "right",
+          axis.line = element_blank(),
+          panel.background = element_blank(),
+          strip.background = element_blank(),
+          panel.grid = element_blank())
+          
+  # Eleições de 2010
+      
+  secret_comp2 %>% 
+   filter(ANO_ELEICAO_ASSUM_SECR == 2002) %>% 
+   ggplot(mapping = aes(x = SIGLA_PARTIDO_ASSUM_SECR, y = UF, fill = TIPO)) + 
+   geom_tile(color = "black", size = 1) +
+   labs(title="Coalizão de partidos nos governos estaduais",
+        subtitle=" Período de 2003-2006",
+        caption="") +
+   theme(plot.background=element_blank(),
+         panel.border=element_blank(),
+         plot.title = element_text(size = rel(1.2)),
+         axis.title = element_blank(),
+         axis.ticks = element_blank(),
+         legend.title = element_blank(),
+         legend.position = "right",
+         axis.line = element_blank(),
+         panel.background = element_blank(),
+         strip.background = element_blank(),
+         panel.grid = element_blank())

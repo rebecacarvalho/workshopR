@@ -2,7 +2,9 @@
 title: "Guia CEPESP"
 author: "Rafael Coelho"
 date: "August 9, 2018"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -30,7 +32,7 @@ library(cepespR)
 
 ## 2. Explorando as funções do CepespR
 
-Uma vez carregado o pacote do CepespR, o usuário poderá fazer uso de 4 tipos de funções: `get_candidates`, `get_coalitions`, `get_votes` e `get_elections`. Cada função mostra ao usuário diferentes partes dos dados do TSE, retornando sempre ao final da consulta uma tabela com os detalhes das eleições. Veja abaixo o que cada função faz:
+Uma vez carregado o pacote do CepespR, o usuário poderá fazer uso de 7 tipos de funções: `get_candidates`, `get_coalitions`, `get_votes`,  `get_elections`, `get_assets`, `get_secretaries` e `get_filiates`. Cada função mostra ao usuário diferentes partes dos dados do TSE, retornando sempre ao final da consulta uma tabela com os detalhes das eleições. Veja abaixo o que cada função faz:
 
 
 ### 2.1. Consultar perfil dos candidatos (get_candidates)
@@ -159,7 +161,42 @@ eldepfed_2511 <- get_elections(year=2014, position=6, regional_aggregation=2, po
 View(eldepfed_2511)
 ```
 
-## 4. Selecionando colunas
+### 2.5. Consultar bens de candidatos
+
+Para obter detalhes a respeito dos bens declarados pelos candidatos em uma eleição específica, a função get_assets é a indicada:
+```{r}
+bens_14 <- get_assets(year=2014)
+View(bens_14)
+```
+
+Nesta função, o único parâmetro obrigatório é YEAR, mas também é possível fazer uso de outros dois parâmetros opcionais, STATE e COLUMNS_LIST:
+
+```{r}
+bens_10_AC <- get_assets(year = 2010, state = "AC", columns_list = list('CODIGO_CARGO','NOME_CANDIDATO','CPF_CANDIDATO','VALOR_BEM'))
+View(bens_10_AC)
+```
+
+### 2.6. Consultar a lista de secretários estaduais
+
+Para obter detalhes sobre as características individuais dos secretrários estaduais entre 1995 e 2010, a função get_secretaries é a indicada:
+
+```{r}
+secret_SP <- get_secretaries(state = "SP", name = "João")
+View(secret_SP)
+```
+
+
+### 2.7. Consultar a lista de filiados
+
+Para obter informações sobre os filiados de um determinado partido, a função get_filiates é a indicada:
+
+```{r}
+fili_MG_PT <- get_filiates(state = "MG", party = "PT")
+View(fili_MG_PT)
+```
+
+
+## 3. Selecionando colunas
 
 As funções do CepespR retornam todas as colunas disponíveis, mas é possivel limitar o tamanho dos resultados selecionando apenas as colunas de interesse. Veja:
 
@@ -212,7 +249,7 @@ Note que a função foi escrita na seguinte ordem: nome do novo data frame+subse
 nome das colunas de interesse
 
 
-## 5. Analisando os resultados
+## 4. Analisando os resultados
 
 É possível fazer análises descritivas das variáveis contidas nos data frames. Por exemplo: 
 
@@ -245,7 +282,7 @@ summary(elpres_14$IDADE_DATA_ELEICAO)
 
 Note que a função `summary` funciona de maneira similar a `table`: `summary` (nome do data frame$variável do data frame em que estou interessado).
 
-## 6. Salvando os resultados
+## 5. Salvando os resultados
 
 Para salvar os data frames gerados neste script em formato .csv, basta usar a função abaixo:
 

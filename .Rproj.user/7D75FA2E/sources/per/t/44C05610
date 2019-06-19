@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1537273463986.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2658315600",
+    "id" : "44C05610",
+    "lastKnownWriteTime" : 1537273230,
+    "last_content_update" : 1537273230,
+    "path" : "~/GitHub/banco.tse_secretarios/script_analise.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "16,16",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
