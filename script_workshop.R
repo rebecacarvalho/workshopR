@@ -26,8 +26,8 @@ library(cepespR)
 
 # 2. Explorando as funções do CepespR -------------------------------------
 
-# Uma vez carregado o pacote do CepespR, o usuário poderá fazer uso de 4 tipos de funções: 
-# get_candidates, get_coalitions, get_votes e get_elections. Cada função mostra
+# Uma vez carregado o pacote do CepespR, o usuário poderá fazer uso de 7 tipos de funções: 
+# get_candidates, get_coalitions, get_votes, get_elections, get_assets, get_secretaries e get_filiates. Cada função mostra
 # ao usuário diferentes partes dos dados do TSE, retornando sempre ao final da consulta
 # uma tabela com os detalhes das eleições. Veja abaixo o que cada função faz:
 
@@ -43,7 +43,7 @@ library(cepespR)
 
 candpres_14 <- get_candidates(year=2014, position="Presidente")
 
-,# Para visualizar os dados do data frame criado usamos a função VIEW
+# Para visualizar os dados do data frame criado usamos a função VIEW
 
 View(candpres_14)
 
@@ -142,6 +142,37 @@ View(elpres_14_PT)
 
 eldepfed_2511 <- get_elections(year=2014, position=6, regional_aggregation=2, political_aggregation=2, candidate_number=2511)
 View(eldepfed_2511)
+
+
+## 2.5. Consultar bens de candidatos ---------------------------------------
+
+# Para obter detalhes a respeito dos bens declarados pelos candidatos em uma eleição
+# específica, a função get_assets é a indicada:
+
+bens_14 <- get_assets(year=2014)
+
+# Nesta função, o único parâmetro obrigatório é YEAR, mas também é possível fazer uso 
+# de outros dois parâmetros opcionais, STATE e COLUMNS_LIST:
+
+bens_10_AC <- get_assets(year = 2010, state = "AC", columns_list = list('CODIGO_CARGO','NOME_CANDIDATO','CPF_CANDIDATO','VALOR_BEM'))
+
+
+
+## 2.6. Consultar a lista de secretários estaduais ---------------------------------
+
+# Para obter detalhes sobre as características individuais dos secretrários estaduais
+# entre 1995 e 2010, a função get_secretaries é a indicada:
+
+secret_SP <- get_secretaries(state = "SP", name = "João")
+
+
+
+## 2.7. Consultar a lista de filiados --------------------------------------
+
+# Para obter informações sobre os filiados de um determinado partido, a
+# função get_filiates é a indicada:
+
+fili_MG_PT <- get_filiates(state = "MG", party = "PT")
 
 
 # 4. Selecionando apenas as colunas que me interessam ---------------------
